@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -154,8 +155,7 @@ namespace IMDBWPF
         private void ShowFilm(Film film)
         {
             table.Clear();
-            //image.Hide();
-
+            
             table.Rows.Add("Title", film.Title);
             table.Rows.Add("Rating", film.Rating);
             table.Rows.Add("Description", film.Description);
@@ -163,11 +163,13 @@ namespace IMDBWPF
 
             if (film.Poster != null)
             {
-                //filmImage.Load(film.Poster);
-                //filmImage.Show();
+                BitmapImage bi = new BitmapImage();
+                bi.BeginInit();
+                bi.UriSource = new Uri(film.Poster);
+                bi.EndInit();
+                image.Source = bi;
             }
-
-            dataGrid.DataContext = table;
+            dataGrid.DataContext = table.DefaultView;
         }
 
         private void AddFilmInCollection(Film film)
