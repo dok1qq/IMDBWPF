@@ -5,11 +5,13 @@ using System.Windows.Input;
 
 namespace IMDBWPF.Application
 {
-    class FilmViewModel
+    public class FilmViewModel
     {
         private string _filmId;
         private string _search;
         private FilmsModel _model;
+        //private readonly IQueryProcessor queryProcessor;
+        //private readonly IUserContext userContext;
 
         private ICommand FindCommand
         {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Data;
-using System.Windows;
-using System.Windows.Media.Imaging;
-using HtmlAgilityPack;
+﻿using System.Windows;
 using IMDBWPF.Application;
 
 namespace IMDBWPF.UI.WPF
@@ -12,9 +8,11 @@ namespace IMDBWPF.UI.WPF
     /// </summary>
     public partial class IMDB : Window
     {
-        public IMDB()
+        public IMDB(FilmViewModel _vm)
         {
             InitializeComponent();
+
+            base.DataContext = _vm;
         }
 
 
