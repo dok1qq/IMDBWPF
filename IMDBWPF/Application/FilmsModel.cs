@@ -13,12 +13,6 @@ namespace IMDBWPF.Application
         private string creator = "//*[@itemprop='creator']/a/span";
         private string fImage = "//*[@class='poster']/a";
         private string nImage = "//*[@class='image']/a";
-        private DataTable table;
-
-        public FilmsModel(DataTable _table)
-        {
-            table = _table;
-        }
 
         private void SetFilmInDB(Film film)
         {
@@ -53,6 +47,22 @@ namespace IMDBWPF.Application
             }
 
             return film;
+        }
+
+        public Film Search(string str)
+        {
+            HtmlWeb web = new HtmlWeb();
+
+            HtmlDocument doc = web.Load("http://www.imdb.com/find?ref_=nv_sr_fn&q=" + str + "&s=all");
+            if (doc != null)
+            {
+                HtmlNode cell = doc.DocumentNode.SelectSingleNode("//*[@class='findList']").SelectSingleNode("tr").SelectSingleNode("th|td");
+                string text = cell.InnerHtml;
+                string[] substrings = text.Split('/');
+
+                return Control(substrings[1], substrings[2]);
+            }
+            return null;
         }
 
         private Film GetInfoOfFilm(string property, string _id)

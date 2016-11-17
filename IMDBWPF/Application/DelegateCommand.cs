@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace IMDBWPF.Application
 {
-    class DelegateCommand : ICommand
+    public class DelegateCommand : ICommand
     {
         private readonly Predicate<object> _canExecute;
         private readonly Action<object> _execute;

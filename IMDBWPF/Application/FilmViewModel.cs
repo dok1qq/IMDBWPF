@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.IO;
+using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace IMDBWPF.Application
 {
@@ -10,15 +14,23 @@ namespace IMDBWPF.Application
         private string _filmId;
         private string _search;
         private FilmsModel _model;
-        //private readonly IQueryProcessor queryProcessor;
-        //private readonly IUserContext userContext;
 
-        private ICommand FindCommand
+        private ObservableCollection<Film> _myFilms = new ObservableCollection<Film>();
+        public ObservableCollection<Film> CurrentFilms
+        {
+            get { return this._myFilms; }
+            
+        }
+
+        public ICommand FindCommand
         {
             get { return new DelegateCommand(FindExecute, FuncToEvaluate); }
         }
 
-        private readonly ICommand SearchCommand;
+        public ICommand SearchCommand
+        {
+            get { return new DelegateCommand(SearchExecute, FuncToEvaluate); }
+        }
 
         public string FilmIDField
         {
@@ -34,28 +46,36 @@ namespace IMDBWPF.Application
 
         public FilmViewModel()
         {
-            //FindCommand = new CommandFind(this);
-            //SearchCommand = new CommandSearch(this);
-            DataTable table = new DataTable("Film info");
-            table.Columns.Add("Name", typeof(string));
-            table.Columns.Add("Property", typeof(string));
-
-            _model = new FilmsModel(table);
+            _model = new FilmsModel();
         }
 
         public void FindExecute(object context)
         {
-            _model.Control("title", FilmIDField);
+            if (FilmIDField != "")
+            {
+                Film _film = _model.Control("title", FilmIDField);
+                if (_film != null)
+                {
+                    CurrentFilms.Add(_film);
+                }
+            }
+        }
+
+        public void SearchExecute(object context)
+        {
+            if (SearchField != "")
+            {
+                Film _film = _model.Search(SearchField);
+                if (_film != null)
+                {
+                    CurrentFilms.Add(_film);
+                }
+            }
         }
 
         public bool FuncToEvaluate(object context)
         {
             return true;
-        }
-
-        public void SearchExecute(string searchText)
-        {
-            //...
         }
     }
 }

@@ -70,8 +70,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Application\CommandSearch.cs" />
-    <Compile Include="Application\CommandFind.cs" />
     <Compile Include="Application\DelegateCommand.cs" />
     <Compile Include="Application\Film.cs" />
     <Compile Include="Application\FilmsModel.cs" />

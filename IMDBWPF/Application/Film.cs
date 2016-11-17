@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Windows.Controls;
 
 namespace IMDBWPF.Application
 {
-    class Film
+    public class Film
     {
         public string Id { get; set; }
         public string Title { get; set; }
