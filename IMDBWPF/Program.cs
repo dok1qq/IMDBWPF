@@ -45,7 +45,7 @@ static class Program
         }
         catch (Exception ex)
         {
-            //Log the exception and exit
+            Console.WriteLine(ex.ToString());
         }
     }
 }

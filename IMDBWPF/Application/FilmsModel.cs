@@ -103,15 +103,15 @@ namespace IMDBWPF.Application
                     recieveCreator = recCreator.InnerHtml;
                 }
 
-
-                if (property.Equals("title"))
+                HtmlNode recImg = doc.DocumentNode.SelectSingleNode(fImage);
+                if ((property.Equals("title"))&&(recImg != null))
                 {
-                    string sImg = doc.DocumentNode.SelectSingleNode(fImage).InnerHtml;
+                    string sImg = recImg.InnerHtml;
                     string[] substrings = sImg.Split('"');
                     resultUrlImage = substrings[5];
                 }
 
-                if (property.Equals("name"))
+                if ((property.Equals("name"))&&(recImg != null))
                 {
                     string sImg = doc.DocumentNode.SelectSingleNode(nImage).InnerHtml;
                     string[] substrings = sImg.Split('"');
