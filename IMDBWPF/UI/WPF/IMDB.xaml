@@ -7,13 +7,23 @@
         mc:Ignorable="d"
         Title="IMDB parser" Height="257.613" Width="985.897">
     <Grid>
-        <Button x:Name="buttonGet" Content="Get" HorizontalAlignment="Left" Margin="271,36,0,0" VerticalAlignment="Top" Width="75" Height="23" Command="{Binding Path=FindCommand}" />
-        <Button x:Name="buttonSearch" Content="Search" HorizontalAlignment="Left" Margin="271,85,0,0" VerticalAlignment="Top" Width="75" Height="23" Command="{Binding Path=SearchCommand}" />
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="371,27,0,0" VerticalAlignment="Top" Height="185" Width="597" ItemsSource="{Binding Path=CurrentFilms}"  >
-        </DataGrid>
-        <Label x:Name="label" Content="Input film ID" HorizontalAlignment="Left" Margin="49,36,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label1" Content="Search in IMDB" HorizontalAlignment="Left" Margin="34,82,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="filmID" HorizontalAlignment="Left" Height="23" Margin="135,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding FilmIDField}" />
-        <TextBox x:Name="search" HorizontalAlignment="Left" Height="23" Margin="135,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding SearchField}" />
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="buttonGet" Grid.Row="0" Grid.Column="2" Margin="48,35,37,48" Content="Get" Command="{Binding Path=FindCommand}" />
+        <Button x:Name="buttonSearch" Grid.Row="1" Grid.Column="2" Margin="48,35,37,48" Content="Search" Command="{Binding Path=SearchCommand}" />
+        <DataGrid x:Name="dataGrid" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="0,0,10,10" ItemsSource="{Binding Path=CurrentFilms}"  />
+        <Label x:Name="label" Grid.Row="0" Grid.Column="0" Margin="103,35,0,0" Content="Input film ID" />
+        <Label x:Name="label1" Grid.Row="1" Grid.Column="0" Margin="88,35,0,0" Content="Search in IMDB"  />
+        <TextBox x:Name="filmID" Grid.Row="0" Grid.Column="1" Margin="0,35,0,48"  Text="{Binding FilmIDField}" />
+        <TextBox x:Name="search" Grid.Row="1" Grid.Column="1" Margin="0,35,0,48"  Text="{Binding SearchField}" />
     </Grid>
 </Window>
